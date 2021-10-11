@@ -10,11 +10,11 @@ in the frontEnd directory and backEnd directory make sure the first thing you do
 
 ### `npm install`
 
-this will install the necessary depandencies in both directory
+this will install the necessary depandencies in both directorys
 
 ## BACKEND
 
-In the project directory, you can run:
+In the backEnd directory, you can run:
 
 ### `npm run dev`
 
@@ -25,7 +25,7 @@ can change the port by changing the value of the variable httpPort in index.ts
 
 ## FRONTEND
 
-In the project directory, you can run:
+In the frontEnd directory, you can run:
 
 ### `npm start`
 
@@ -33,3 +33,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
+
+## DATABASE
+
+In the dataBase directory, you can find a picture of the database schema and 2 ways to create it's tables plus the query to get all players that have games of type “SLOT” as their favorite games.
