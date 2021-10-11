@@ -1,0 +1,61 @@
+CREATE TABLE employee (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255),
+  casinoId INTEGER,
+  created_at timestamp,
+  FOREIGN KEY (casinoId) REFERENCES casino(id)
+);
+
+CREATE TABLE casino (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255),
+  created_at timestamp
+);
+
+CREATE TABLE country (
+  id INTEGER PRIMARY KEY,
+  name varchar(255) UNIQUE,
+  created_at timestamp
+);
+
+CREATE TABLE game (
+  id INTEGER PRIMARY KEY,
+  name varchar(255) UNIQUE,
+  typeId INTEGER,
+  casinoId int,
+  created_at timestamp,
+  FOREIGN KEY (typeId) REFERENCES type(id),
+  FOREIGN KEY (casinoId) REFERENCES casino(id)
+);
+
+CREATE TABLE type (
+  id INTEGER PRIMARY KEY,
+  name varchar(255) UNIQUE,
+  created_at timestamp
+);
+
+CREATE TABLE player (
+  id INTEGER PRIMARY KEY,
+  name varchar(255),
+  favorite INTEGER,
+  created_at timestamp,
+  FOREIGN KEY (favorite) REFERENCES game(id)
+);
+
+CREATE TABLE country_game (
+  id INTEGER PRIMARY KEY,
+  countryId INTEGER,
+  gameId INTEGER,
+  created_at timestamp,
+  FOREIGN KEY (countryId) REFERENCES country(id),
+  FOREIGN KEY (gameId) REFERENCES game(id)
+);
+
+CREATE TABLE countries_player (
+  id INTEGER PRIMARY KEY,
+  countryId INTEGER,
+  playerId INTEGER,
+  created_at timestamp,
+  FOREIGN KEY (countryId) REFERENCES country(id),
+  FOREIGN KEY (playerId) REFERENCES player(id)
+);

@@ -1,0 +1,4 @@
+select p.name,p.id,p.favorite from player p 
+left join game g on p.favorite = g.id
+left join type t on g.typeId = t.id
+where t.name = 'SLOT';  

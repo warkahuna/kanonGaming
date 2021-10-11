@@ -1,0 +1,69 @@
+CREATE TABLE employee (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255),
+  casinoId INTEGER,
+  created_at timestamp
+);
+
+CREATE TABLE casino (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255),
+  created_at timestamp
+);
+
+CREATE TABLE country (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255) UNIQUE,
+  created_at timestamp
+);
+
+CREATE TABLE game (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255) UNIQUE,
+  typeId INTEGER,
+  casinoId INTEGER,
+  created_at timestamp
+);
+
+CREATE TABLE type (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255) UNIQUE,
+  created_at timestamp
+);
+
+CREATE TABLE player (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name varchar(255),
+  favorite INTEGER,
+  created_at timestamp
+);
+
+CREATE TABLE country_game (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  countryId INTEGER,
+  gameId INTEGER,
+  created_at timestamp
+);
+
+CREATE TABLE countries_player (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  countryId INTEGER,
+  playerId INTEGER,
+  created_at timestamp
+);
+
+ALTER TABLE employee ADD FOREIGN KEY (casinoId) REFERENCES casino (id);
+
+ALTER TABLE game ADD FOREIGN KEY (typeId) REFERENCES type (id);
+
+ALTER TABLE game ADD FOREIGN KEY (casinoId) REFERENCES casino (id);
+
+ALTER TABLE player ADD FOREIGN KEY (favorite) REFERENCES game (id);
+
+ALTER TABLE countries_player ADD FOREIGN KEY (playerId) REFERENCES country (id);
+
+ALTER TABLE countries_player ADD FOREIGN KEY (countryId) REFERENCES player (id);
+
+ALTER TABLE country_game ADD FOREIGN KEY (countryId) REFERENCES game (id);
+
+ALTER TABLE country_game ADD FOREIGN KEY (gameId) REFERENCES country (id);
